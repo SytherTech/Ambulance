@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            max-width: 400px;
+        }
+
+        .login-form img {
+            max-width: 100%;
+        }
+
+        img {
+            height: 80%;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container login-page">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://img.freepik.com/free-vector/ambulance-concept-illustration_114360-6861.jpg?w=360"
+                    alt="Ambulance Image">
+            </div>
+            <div class="col-md-6">
+                <h2>SignUp now to book ambulance</h2>
+                <% if (info) { %>
+                    <p style="color: green;">
+                        <%= info %>
+                    </p>
+                    <% } %>
+                        <% if (error) { %>
+                            <p style="color: red;">
+                                <%= error %>
+                            </p>
+                            <% } %>
+                                <form class="login-form" onsubmit="return validateForm(event)" action="/api/signup"
+                                    method="post">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Enter your email" required>
+                                        <div class="invalid-feedback" id="emailError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter your password" required>
+                                        <div class="invalid-feedback" id="passwordError"></div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </form>
+                                <p class="mt-3">Want to Login? <a href="/">LogIn now</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+
+            // Get form input values
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Validate form inputs
+            var isValid = true;
+
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Please enter your email.';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('passwordError').textContent = 'Please enter your password.';
+                isValid = false;
+            }
+
+            // If form inputs are valid, submit the form
+            if (isValid) {
+                document.getElementsByClassName('login-form')[0].submit();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Rest of the CSS styles */
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav .left-side {
+    display: flex;
+    align-items: center;
+}
+
+nav .right-side {
+    list-style-type: none;
+    display: flex;
+}
+
+nav .right-side li {
+    margin-left: 10px;
+}
+
+nav .right-side li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Rest of the CSS styles */
+
+/* Slider styles */
+.slider {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Grid styles */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin: 20px;
+}
+
+.item {
+    text-align: left;
+    width: 230px;
+
+}
+
+.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.book-btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}

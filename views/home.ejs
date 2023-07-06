@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ambulance Booking Web FYP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .carousel-item img {
+            max-height: 400px;
+        }
+
+        .card-img-top {
+            height: 200px;
+
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ambulance Booking</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/track">Track Ambulance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www.emergencyambulanceservices.com/images/SLIDER01.jpg" alt="Image 1"
+                    class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="https://rmaspecialvehicles.com/wp-content/uploads/2020/09/Van-Ambulance-Banner-1.jpg"
+                    alt="Image 2" class="d-block w-100">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <% if (ambulances.length> 0) { %>
+
+                <% ambulances.forEach((ambulance)=> { %>
+
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="/uploads/<%= ambulance.img %>" alt="Service 1" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= ambulance.name %>
+                                </h5>
+                                <p class="card-text">Price : Rs <%= ambulance.price %>
+                                </p>
+                                <a href="/book?id=<%=ambulance._id %>" class="btn btn-primary">Book
+                                    Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <p>No ambulances found.</p>
+                            <% } %>
+
+
+        </div>
+
+        <footer class="bg-dark text-white text-center py-2">
+            <p>Ambulance booking web FYP</p>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ambulance Bookings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ambulance Booking</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/track">Track Ambulance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Previous Bookings</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ambulance Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (ambulances.length> 0) { %>
+
+                    <% ambulances.forEach((ambulance)=> { %>
+                        <tr>
+                            <td>
+                                <%= ambulance.username %>
+                            </td>
+                            <td><img src="/uploads/<%= ambulance.img %>" alt="Ambulance 1" style="max-height: 50px;">
+                            </td>
+                            <td>Rs <%= ambulance.price %>
+                            </td>
+                            <td>
+                                <%= ambulance.date.toLocaleString() %>
+                            </td>
+                            <td>
+                                <%= ambulance.status %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <p>No ambulances found.</p>
+                                <% } %>
+                                    <!-- Add more rows for each booking -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
