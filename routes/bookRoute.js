@@ -27,6 +27,19 @@ router.post('/bookings', async (req, res) => {
     }
 });
 
+router.post('/update', async (req, res) => {
+    const selectedOption = req.body.selectedOption;
+    const index = req.body.index;
+    console.log(req.body)
+    await BookAmbulance.findByIdAndUpdate(
+        { _id: index },
+        { $set: { status: selectedOption } },
+
+    );
+
+    res.redirect('/admin-bookings')
+});
+
 router.get('/bookings', async (req, res) => {
     try {
         const bookings = await BookAmbulance.find();

@@ -13,10 +13,12 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+//
 
 router.post('/ambulances', upload.single('image'), async (req, res) => {
     try {
         const { name, price } = req.body;
+
         const img = req.file.filename;
 
         // Create a new ambulance
@@ -29,7 +31,7 @@ router.post('/ambulances', upload.single('image'), async (req, res) => {
         // Save the ambulance to the database
         await ambulance.save();
 
-        res.status(201).json({ message: 'Ambulance added successfully' });
+        res.redirect('admin')
     } catch (err) {
         console.error('Error adding ambulance', err);
         res.status(500).json({ message: 'Internal server error' });
@@ -46,5 +48,16 @@ router.get('/ambulances', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+router.delete('/ambulance/delete/:id', async (req, res) => {
+    console.log("deleing")
+    try {
+
+        await Ambulance.deleteOne({ _id: req.params.id })
+        res.render('admin')
+    } catch (e) {
+        console.log(e)
+    }
+})
 
 module.exports = router;

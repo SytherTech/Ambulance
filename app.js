@@ -9,6 +9,10 @@ const path = require('path');
 const bookingRoute = require('./routes/bookRoute');
 const app = express();
 const BookedAmbulance = require('./models/booking')
+const ContactModel = require('./models/contact')
+
+
+const ContactRouter = require('./routes/contactRoute')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -35,6 +39,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/your-database-name', { useNewUrlPars
 app.use('/api', ambulanceRoutes);
 app.use('/api', authRoute)
 app.use('/api', bookingRoute);
+app.use('/api', ContactRouter);
 const checkSession = (req, res, next) => {
     if (req.session.user) {
         return res.redirect('/home'); // Redirect to the home page
@@ -98,6 +103,25 @@ app.get('/logout', (req, res) => {
         res.redirect('/'); // Redirect to the login page after logout
     });
 });
+
+
+app.get('/admin', async (req, res) => {
+    const ambulances = await Ambulance.find();
+    res.render('admin', { ambulances })
+})
+
+app.get('/admin-bookings', async (req, res) => {
+    const bookings = await BookedAmbulance.find();
+    res.render('admin-bookings', { bookings })
+})
+
+app.get('/admin-mail', async (req, res) => {
+
+    var contacts = await ContactModel.find();
+
+    res.render('admin-mail', { contacts })
+})
+
 
 app.listen(3000, () => {
     console.log("Server Running")
